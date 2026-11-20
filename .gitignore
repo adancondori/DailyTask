@@ -1,0 +1,11 @@
+/target/
+/salida/
+/.codebase-memory/
+/.diario-privado/
+*.log
+.DS_Store
+/config.toml
+/config.*.local.toml
+/consultas/VALIDACION.md
+/consultas/evidencia-*.json
+/openspec/changes/completar-diario/

@@ -1,0 +1,24 @@
+SELECT filter(count(*), WHERE timestamp >= {{semana_inicio_ms}} AND timestamp < {{fin_ms}}) AS semana_actual_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{semana_inicio_ms}} AND timestamp < {{fin_ms}}) AS semana_actual_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{semana_inicio_ms}} AND timestamp < {{fin_ms}}) AS semana_actual_errores_porcentaje,
+filter(count(*), WHERE timestamp >= {{semana_anterior_ms}} AND timestamp < {{semana_inicio_ms}}) AS semana_anterior_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{semana_anterior_ms}} AND timestamp < {{semana_inicio_ms}}) AS semana_anterior_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{semana_anterior_ms}} AND timestamp < {{semana_inicio_ms}}) AS semana_anterior_errores_porcentaje,
+filter(count(*), WHERE timestamp >= {{quincena_inicio_ms}} AND timestamp < {{fin_ms}}) AS quincena_actual_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{quincena_inicio_ms}} AND timestamp < {{fin_ms}}) AS quincena_actual_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{quincena_inicio_ms}} AND timestamp < {{fin_ms}}) AS quincena_actual_errores_porcentaje,
+filter(count(*), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{quincena_inicio_ms}}) AS quincena_anterior_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{quincena_inicio_ms}}) AS quincena_anterior_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{quincena_inicio_ms}}) AS quincena_anterior_errores_porcentaje,
+filter(count(*), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{fin_ms}}) AS mes_actual_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{fin_ms}}) AS mes_actual_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{mes_inicio_ms}} AND timestamp < {{fin_ms}}) AS mes_actual_errores_porcentaje,
+filter(count(*), WHERE timestamp >= {{mes_anterior_ms}} AND timestamp < {{mes_inicio_ms}}) AS mes_anterior_transacciones,
+filter(percentile(duration,95), WHERE timestamp >= {{mes_anterior_ms}} AND timestamp < {{mes_inicio_ms}}) AS mes_anterior_p95_segundos,
+filter(percentage(count(*), WHERE error IS true), WHERE timestamp >= {{mes_anterior_ms}} AND timestamp < {{mes_inicio_ms}}) AS mes_anterior_errores_porcentaje
+FROM Transaction
+WHERE appName IN ('PaybyCourt', 'PaybyCourt API', 'platform-app')
+AND (name IN ('OtherTransaction/SidekiqJob/CapturePaymentJob/perform', 'OtherTransaction/SidekiqJob/AutomaticCapturePaymentJob/perform', 'OtherTransaction/SidekiqJob/AutomaticRenewalMembershipJob/perform', 'Controller/api/v1/stripe_payments/create', 'Controller/api/v1/stripe_payments/capture', 'Controller/api/v1/payments/refund') OR name LIKE 'Controller/api/v1/webhooks/%' OR name LIKE 'Controller/billing/webhooks/%')
+FACET appName,name
+SINCE '{{inicio}} +0000' UNTIL '{{fin}} +0000'
+LIMIT 1000

@@ -1,0 +1,7 @@
+SELECT count(*) AS transacciones, percentile(duration, 95) AS p95_segundos, percentage(count(*), WHERE error IS true) AS errores_porcentaje
+FROM Transaction
+WHERE appName IN ('PaybyCourt', 'PaybyCourt API', 'platform-app')
+AND (name IN ('OtherTransaction/SidekiqJob/CapturePaymentJob/perform', 'OtherTransaction/SidekiqJob/AutomaticCapturePaymentJob/perform', 'OtherTransaction/SidekiqJob/AutomaticRenewalMembershipJob/perform', 'Controller/api/v1/stripe_payments/create', 'Controller/api/v1/stripe_payments/capture', 'Controller/api/v1/payments/refund') OR name LIKE 'Controller/api/v1/webhooks/%' OR name LIKE 'Controller/billing/webhooks/%')
+FACET appName, name
+SINCE '{{inicio}} +0000' UNTIL '{{fin}} +0000'
+LIMIT 1000

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>com.diario.manana</string>
+<key>ProgramArguments</key><array><string>{{BINARIO}}</string><string>--config</string><string>{{CONFIG}}</string><string>todo</string></array>
+<key>WorkingDirectory</key><string>{{RAIZ}}</string>
+<key>StartCalendarInterval</key><array>
+<dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+<dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+<dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+<dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+<dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+</array>
+<key>EnvironmentVariables</key><dict><key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/Users/eidan/.cargo/bin</string><key>TZ</key><string>America/La_Paz</string></dict>
+<key>StandardOutPath</key><string>{{LOGS}}/manana.log</string><key>StandardErrorPath</key><string>{{LOGS}}/manana-error.log</string>
+</dict></plist>

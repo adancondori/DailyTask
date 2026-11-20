@@ -1,0 +1,30 @@
+# Configuración de ejemplo para los datos sintéticos de fixtures/.
+# Copia a config.toml y adapta las cuentas antes de consultar fuentes reales.
+ciudad = "Santa Cruz de la Sierra"
+latitud = -17.7833
+longitud = -63.1821
+zona_horaria = "America/La_Paz"
+salida = "salida"
+github_usuario = "adancondori"
+github_organizacion = "PlaybyCourt"
+repositorios = ["PlaybyCourt/platform", "PlaybyCourt/playbypoint-mobile"]
+jira_sitio = "https://example.atlassian.net"
+jira_proyecto = "CORE"
+jira_tablero = 1
+# jira_filtro = 1
+jira_personas = ["Adan Condori", "Radhames", "Santiago"]
+personas_primero = ["Radhames", "Santiago"]
+canales_bot = ["dev-notifications", "alertas-infra-devops", "rack-attack-alerts", "payment_intents_cancellation_tracker"]
+canal_deploy = "deployments"
+temas = ["fintech en LATAM", "Adyen", "IA para desarrollo"]
+puerto = 7331
+claude_modelo = "sonnet"
+timeout_segundos = 600
+voz = "Paulina"
+reporte_url = ""
+mcp_config = ""
+
+[identidades]
+"Adan Condori" = "adancondori"
+"Radhames" = "radhames"
+"Santiago" = "santiago"

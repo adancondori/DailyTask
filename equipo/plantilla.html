@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>Payments · {{ r.fecha }}</title>
+<link rel="stylesheet" href="{{ raiz }}estilos/pico.min.css"><link rel="stylesheet" href="{{ raiz }}estilos/tokens.css">
+</head>
+<body>
+{% macro tabla(f) %}
+<p><small>Actualizado {{ f.actualizado|local }}{% if f.error %} · ⚠ No disponible: {{ f.error }}{% elif not f.completo %} · ⚠ Datos incompletos{% endif %}</small></p>
+{% if f.datos %}<div style="overflow:auto" tabindex="0" role="region" aria-label="Resultados originales"><table><thead><tr>{% for c in f.datos.columnas %}<th>{{ c }}</th>{% endfor %}</tr></thead><tbody>{% for fila in f.datos.filas %}<tr>{% for dato in fila %}<td>{{ dato }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>{% for n in f.datos.notas %}<p><small>{{ n }}</small></p>{% endfor %}{% endif %}
+{% endmacro %}
+{% macro cambio(valor) %}{% if valor is not none %}{{ valor }} frente al periodo anterior{% else %}Comparación no disponible: cobertura insuficiente{% endif %}{% endmacro %}
+{% macro tickets(claves) %}{% for clave in claves %}<a href="{{ (r.jira_sitio ~ '/browse/' ~ clave)|enlace }}">{{ clave }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endmacro %}
+<header>
+<nav><a href="{{ raiz }}ultimo.html">El Diario</a><strong>Payments</strong></nav>
+<h1>Entrega e impacto del equipo</h1>
+<p>Actualizado {{ r.actualizado|local }} · CORE 590 · Todos los gateways</p>
+{% if r.demo %}<p><strong>Demostración con datos sintéticos.</strong></p>{% endif %}
+<nav aria-label="Periodos">{% for v in r.vistas %}<a href="#periodo-{{ v.dias }}">{{ v.nombre }}</a>{% endfor %}</nav>
+</header>
+<main>
+<section><h2>Resumen de la semana</h2><p><small>Actualizado {{ r.resumen.actualizado|local }}</small></p>
+{% if r.resumen.datos %}{% for linea in r.resumen.datos %}<p>{{ linea }}</p>{% endfor %}{% else %}<p>⚠ No disponible: {{ r.resumen.error }}</p>{% endif %}
+<details><summary>Alcance y límites de las métricas</summary>{% for l in r.limitaciones %}<p>ⓘ {{ l }}</p>{% endfor %}</details>
+</section>
+{% for v in r.vistas %}
+<section id="periodo-{{ v.dias }}">
+<h2>{{ v.nombre }} <small>{{ v.inicio }} al {{ v.fin }}</small></h2>
+<p>Periodo anterior: {{ v.anterior_inicio }} al {{ v.anterior_fin }}.</p>
+<h3>Entrega por persona</h3>
+<p><small>GitHub {{ r.fuentes.github.actualizado|local }} · Jira {{ r.fuentes.jira.actualizado|local }} · Deploys {{ r.fuentes.slack.actualizado|local }}</small></p>
+{% for fuente in [r.fuentes.github,r.fuentes.jira,r.fuentes.slack] %}{% if fuente.error %}<p>⚠ {{ fuente.error }}</p>{% elif not fuente.completo %}<p>⚠ Fuente incompleta; pueden faltar entregas o deploys.</p>{% endif %}{% endfor %}
+{% if v.personas %}<table data-tickets><thead><tr><th>Persona</th><th>Cerrados</th><th>En curso</th><th>Ciclo medio</th><th>PRs y primer deploy</th></tr></thead><tbody>
+{% for p in v.personas %}<tr>
+<td data-label="Persona">{{ p.persona }}{% if not p.identidad_verificada %}<br>Identidad GitHub sin verificar{% endif %}</td>
+<td data-label="Cerrados">{{ tickets(p.cerrados) }}{% if not p.cerrados %}Sin cierres verificados{% endif %}<br>{{ p.cambio_cerrados }} frente al periodo anterior</td>
+<td data-label="En curso">{{ tickets(p.en_curso) }}</td>
+<td data-label="Ciclo medio">{% if p.ciclo_dias is not none %}{{ p.ciclo_dias|numero }} días{% else %}Sin fechas verificadas{% endif %}</td>
+<td data-label="PRs y primer deploy">{% for pr in p.prs %}<p><a href="{{ pr.url|enlace }}">{{ pr.titulo }}</a><br>{% if pr.primer_deploy %}<a href="{{ pr.deploy_url|enlace }}">Primer deploy {{ pr.primer_deploy|local }}</a>{% else %}Sin deploy confirmado{% endif %}</p>{% else %}{% if p.identidad_verificada %}Sin PRs mergeados verificados en el periodo{% else %}No disponible: identidad GitHub sin verificar{% endif %}{% endfor %}</td>
+</tr>{% endfor %}</tbody></table>{% else %}<p>Sin personas verificadas disponibles.</p>{% endif %}
+<h3>Sprint</h3>
+{% for s in v.sprints %}<details open><summary>{{ s.nombre }} · {{ s.inicio }}–{{ s.fin }}</summary>{% if s.completo %}<p>Comprometidos al inicio: {{ s.comprometidos|length }} · Terminados del compromiso inicial: {{ s.terminados|length }} · {{ "Arrastrados" if s.estado == "closed" else "Pendientes" }}: {{ s.arrastrados|length }}</p><p>{{ tickets(s.arrastrados) }}</p>{% else %}<p>⚠ Compromiso y cierre no disponibles; consulta la causa a continuación.</p>{% endif %}<p><small>{{ s.evidencia }}</small></p></details>{% else %}<p>Sin sprints verificados para este periodo.</p>{% endfor %}
+<h3>Autorizaciones sin capturar · saldo total</h3>
+<p><small>Medido {{ v.autorizaciones.actualizado|local }}{% if v.autorizaciones.actualizado_anterior %} · Medición anterior {{ v.autorizaciones.actualizado_anterior|local }}{% endif %}</small></p>
+<p>Todos los pagos que siguen autorizados al consultar, cualquiera sea su fecha de creación. Este saldo no se suma entre días.</p>
+{% if v.autorizaciones.error %}<p>⚠ No disponible: {{ v.autorizaciones.error }}</p>{% endif %}
+<table data-tickets><thead><tr><th>Gateway</th><th>Moneda</th><th>Sin capturar</th><th>Con más de siete días</th></tr></thead><tbody>
+{% for a in v.autorizaciones.filas %}<tr><td data-label="Gateway">{{ a.gateway }}</td><td data-label="Moneda">{{ a.moneda }}</td><td data-label="Sin capturar">{{ a.sin_capturar }}<br><small>{{ cambio(a.cambio) }}</small></td><td data-label="Con más de siete días">{{ a.mayores_siete_dias }}<br><small>{{ cambio(a.cambio_mayores_siete_dias) }}</small></td></tr>{% endfor %}
+</tbody></table>
+<h3>Salud por gateway</h3>
+<p>Cobertura de pagos: {{ v.salud.cobertura[0] }}/{{ v.dias }} días; periodo anterior {{ v.salud.cobertura[1] }}/{{ v.dias }}. Renovaciones: {{ v.salud.cobertura_renovaciones[0] }}/{{ v.dias }} y {{ v.salud.cobertura_renovaciones[1] }}/{{ v.dias }}.</p>
+{% if not v.salud.comparable %}<p>ⓘ Los totales describen los días disponibles. Falta historia para comparar periodos completos.</p>{% endif %}
+{% for g in v.salud.gateways %}<article>
+<h4>{{ g.gateway }}</h4>
+{% if g.monedas %}<table data-tickets><thead><tr><th>Moneda</th><th>Volumen capturado</th><th>Pagos capturados</th><th>Autorizados en la cohorte</th></tr></thead><tbody>
+{% for m in g.monedas %}<tr><td data-label="Moneda">{{ m.moneda }}</td><td data-label="Volumen capturado">{{ m.volumen }}<br><small>{{ cambio(m.cambio_volumen) }}</small></td><td data-label="Pagos capturados">{{ m.capturados }}<br><small>{{ cambio(m.cambio_capturados) }}</small></td><td data-label="Autorizados sin capturar">{{ m.sin_capturar }}<br><small>{{ cambio(m.cambio_sin_capturar) }}</small></td></tr>{% endfor %}
+</tbody></table>{% else %}<p>Sin pagos con moneda verificable para este grupo.</p>{% endif %}
+<p>Renovaciones no cobradas atribuidas: {% if g.no_cobradas is defined %}{{ g.no_cobradas }} · {{ cambio(g.cambio_no_cobradas) }}{% else %}No disponible: sin observaciones atribuibles a este gateway.{% endif %}</p>
+<p>ⓘ Aprobación real: <strong>{{ g.aprobacion.estado }}</strong>. {{ g.aprobacion.causa }}</p>
+<p>ⓘ Reembolsos fallidos: <strong>{{ g.reembolsos_fallidos.estado }}</strong>. {{ g.reembolsos_fallidos.causa }}</p>
+</article>{% else %}<p>⚠ No disponible: no hay días con datos válidos de salud.</p>{% endfor %}
+<h3>Rendimiento de pagos</h3>
+<p><small>Actualizado {{ v.rendimiento.actualizado|local }}</small></p>
+{% if v.rendimiento.error %}<p>⚠ No disponible: {{ v.rendimiento.error }}</p>{% endif %}
+{% if v.rendimiento.error_cobertura %}<p>⚠ Cobertura no disponible: {{ v.rendimiento.error_cobertura }}</p>{% endif %}
+<p>Eventos observados entre {{ v.rendimiento.desde_observado or 'fecha desconocida' }} y {{ v.rendimiento.hasta_observado or 'fecha desconocida' }}.</p>
+{% if not v.rendimiento.completo %}<p>⚠ La fuente no cubre toda esta ventana. Las cifras siguientes describen solo los eventos disponibles.</p>{% endif %}
+{% if not v.rendimiento.completo_anterior %}<p>ⓘ Comparación no disponible: falta cobertura del periodo anterior.</p>{% endif %}
+<table data-tickets><thead><tr><th>Aplicación y transacción</th><th>Transacciones</th><th>p95 (segundos)</th><th>Tasa de error</th></tr></thead><tbody>
+{% for t in v.rendimiento.filas %}<tr><td data-label="Aplicación y transacción">{{ t.aplicacion }}<br>{{ t.transaccion }}</td><td data-label="Transacciones">{{ t.transacciones if t.transacciones is not none else 'Sin eventos disponibles' }}</td><td data-label="p95 (segundos)">{% if t.p95_segundos is not none %}{{ t.p95_segundos|precision }}{% else %}No disponible: sin eventos{% endif %}<br><small>{% if t.cambio_p95 is not none %}Anterior {{ t.p95_anterior|precision }} · Cambio {{ t.cambio_p95|precision }} s{% else %}Sin comparación verificable{% endif %}</small></td><td data-label="Tasa de error">{% if t.errores_porcentaje is not none %}{{ t.errores_porcentaje|precision }} %{% else %}No disponible: sin eventos{% endif %}<br><small>{% if t.cambio_errores is not none %}Anterior {{ t.errores_anterior|precision }} % · Cambio {{ t.cambio_errores|precision }} puntos porcentuales{% else %}Sin comparación verificable{% endif %}</small></td></tr>{% endfor %}
+</tbody></table>
+<h3>Familias de errores de pagos</h3>
+<p><small>Actualizado {{ r.snapshot.errores.actualizado|local }}{% if r.snapshot.errores.error %} · ⚠ No disponible: {{ r.snapshot.errores.error }}{% endif %}</small></p>
+<p>Las nuevas se cuentan por primera aparición. Abiertas y resueltas corresponden a la última lectura de cada error; la fuente no expone cuándo se resolvieron. Los avisos se comparan dentro de las ventanas indicadas.</p>
+{% for f in v.errores %}<details><summary>{{ f.clase }} · {{ f.avisos }} avisos (anterior {{ f.avisos_anteriores }})</summary>
+<p>! Requiere acción: {{ f.abiertas }} abiertas · ✓ Listo: {{ f.resueltas }} resueltas · ⓘ Informativo: {{ f.ignoradas }} ignoradas · {{ f.nuevas }} errores nuevos en el periodo.</p>
+<table><thead><tr><th>Día</th><th>Avisos</th></tr></thead><tbody>{% for dia,n in f.dias|items %}<tr><td>{{ dia }}</td><td>{{ n }}</td></tr>{% endfor %}</tbody></table>
+<ul>{% for caso in f.casos %}<li><a href="{{ caso.url|enlace }}">Ver error</a> · Observado {{ caso.actualizado|local }} · {{ '✓ Listo' if caso.resuelto else ('ⓘ Informativo' if caso.ignorado else '! Requiere acción') }}{% if caso.pr_cierre %} · <a href="{{ caso.pr_cierre|enlace }}">PR de cierre</a>{% elif caso.resuelto %} · PR de cierre sin confirmar{% endif %}</li>{% endfor %}</ul></details>{% else %}<p>Sin familias verificadas disponibles.</p>{% endfor %}
+<details><summary>Series diarias guardadas · {{ v.series|length }} días</summary>
+{% for s in v.series %}<h4>{{ s.fecha }}</h4><h5>Salud</h5>{{ tabla(s.salud) }}<h5>Renovaciones</h5>{{ tabla(s.renovaciones) }}<h5>Rendimiento</h5>{{ tabla(s.rendimiento) }}{% endfor %}
+</details>
+</section>
+{% endfor %}
+<section><h2>Último día disponible · {{ r.snapshot.fecha }}</h2>
+<details><summary>Resultados originales de salud y renovaciones</summary>{{ tabla(r.snapshot.salud) }}{{ tabla(r.snapshot.renovaciones) }}</details>
+<details><summary>Saldo original de autorizaciones</summary>{{ tabla(r.autorizaciones) }}</details>
+<h3>Rendimiento</h3>{{ tabla(r.snapshot.rendimiento) }}
+<p>Latencia p95 en segundos. Los percentiles diarios se conservan por separado; no se promedian para representar un periodo.</p>
+</section>
+<section><h2>Riesgos abiertos</h2>{% for x in r.riesgos %}<article><h3>{{ x.titulo }}</h3><p>⊘ Bloqueado · Severidad {{ x.severidad }} · {{ x.cifra }}</p><a href="{{ x.evidencia|enlace }}">Evidencia</a><p>{{ x.siguiente_paso }}</p></article>{% else %}<p>Sin riesgos curados. Revisa las propuestas antes de agregarlos.</p>{% endfor %}</section>
+<section><h2>Iniciativas</h2>{% for x in r.iniciativas %}<article><h3>{{ x.titulo }}</h3><p>✓ Listo · En producción {{ x.produccion }}</p><p>{{ x.impacto }}</p><a href="{{ x.evidencia|enlace }}">Evidencia</a></article>{% else %}<p>Sin iniciativas curadas.</p>{% endfor %}</section>
+</main>
+<footer>Payments · Datos locales privados · {{ r.actualizado|local }}</footer>
+</body></html>

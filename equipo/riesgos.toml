@@ -1,0 +1,8 @@
+# Curado a mano. La recolección nunca modifica este archivo.
+# [[riesgos]]
+# titulo = "Descripción concreta"
+# severidad = "Alta"
+# cifra = "Dato y unidad con fecha"
+# evidencia = "https://..."
+# siguiente_paso = "Persona responsable y acción"
+riesgos = []

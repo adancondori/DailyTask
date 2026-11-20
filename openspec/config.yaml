@@ -1,0 +1,7 @@
+artifact_root: openspec
+validation_environment: local
+test_command: cargo test
+lint_command: cargo clippy --all-targets -- -D warnings
+scope_authority: PLAN.md; instrucción del usuario de completar todo el plan
+apply_group_policy: all_plan_steps_authorized
+archive_requires_lead_approval: true

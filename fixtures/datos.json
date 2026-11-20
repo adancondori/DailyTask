@@ -1,0 +1,553 @@
+{
+  "version": 1,
+  "fecha": "2026-11-19",
+  "ayer_habil": "2026-11-18",
+  "demo": true,
+  "github": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "prs": [
+        {
+          "numero": 101,
+          "repo": "PlaybyCourt/platform",
+          "titulo": "Validar captura CORE-101",
+          "url": "https://github.com/PlaybyCourt/platform/pull/101",
+          "autor": "radhames",
+          "creado": "2026-11-15T14:00:00Z",
+          "actualizado": "2026-11-18T14:00:00Z",
+          "ultimo_commit": "2026-11-15T14:00:00Z",
+          "mergeado": null,
+          "reviews": [],
+          "solicitado": [
+            "adancondori"
+          ],
+          "ci": "SUCCESS",
+          "conflictos": false,
+          "borrador": false,
+          "abierto": true,
+          "tickets": [
+            "CORE-101"
+          ]
+        },
+        {
+          "numero": 103,
+          "repo": "PlaybyCourt/platform",
+          "titulo": "Validar captura CORE-103",
+          "url": "https://github.com/PlaybyCourt/platform/pull/103",
+          "autor": "adancondori",
+          "creado": "2026-11-18T14:00:00Z",
+          "actualizado": "2026-11-18T14:00:00Z",
+          "ultimo_commit": "2026-11-18T14:00:00Z",
+          "mergeado": null,
+          "reviews": [],
+          "solicitado": [],
+          "ci": "SUCCESS",
+          "conflictos": false,
+          "borrador": false,
+          "abierto": true,
+          "tickets": [
+            "CORE-103"
+          ]
+        },
+        {
+          "numero": 104,
+          "repo": "PlaybyCourt/platform",
+          "titulo": "Validar captura CORE-104",
+          "url": "https://github.com/PlaybyCourt/platform/pull/104",
+          "autor": "santiago",
+          "creado": "2026-11-17T14:00:00Z",
+          "actualizado": "2026-11-18T14:00:00Z",
+          "ultimo_commit": "2026-11-17T14:00:00Z",
+          "mergeado": "2026-11-18T16:00:00Z",
+          "reviews": [],
+          "solicitado": [
+            "adancondori"
+          ],
+          "ci": "SUCCESS",
+          "conflictos": false,
+          "borrador": false,
+          "abierto": false,
+          "tickets": [
+            "CORE-104"
+          ]
+        }
+      ],
+      "actividad": [
+        {
+          "id": "ayer-pr",
+          "titulo": "PR mergeado: captura de pagos",
+          "detalle": "Ejemplo de demostración",
+          "url": "https://github.com/PlaybyCourt/platform/pull/101",
+          "persona": "santiago",
+          "estado": "Requiere acción",
+          "fecha": "2026-11-18T15:00:00Z",
+          "sospechoso": false
+        },
+        {
+          "id": "ayer-commit",
+          "titulo": "Commit: validar webhook",
+          "detalle": "Ejemplo de demostración",
+          "url": "https://github.com/PlaybyCourt/platform/pull/101",
+          "persona": "adancondori",
+          "estado": "Requiere acción",
+          "fecha": "2026-11-18T15:00:00Z",
+          "sospechoso": false
+        }
+      ],
+      "completo": true,
+      "advertencias": []
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "clima": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "actual": 31.5,
+      "maxima": 33.0,
+      "minima": 23.0,
+      "lluvia": 70.0,
+      "url": "https://open-meteo.com/"
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "dolar": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "oficial": 11.68,
+      "oficial_fecha": "2026-11-19",
+      "paralelo": 11.95,
+      "muestras": 10,
+      "brecha": 2.3116438356164393,
+      "cambio_diario": 0.2,
+      "cambio_cinco_dias": -0.4,
+      "oficial_url": "https://www.bcb.gob.bo/",
+      "paralelo_url": "https://p2p.binance.com/"
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "gmail": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "correos": [
+        {
+          "item": {
+            "id": "hb-0",
+            "titulo": "TimeoutError",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://github.com/PlaybyCourt/platform/pull/101",
+            "persona": "Honeybadger",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "clase": "maquina",
+          "tipo_maquina": "honeybadger",
+          "error_clase": "TimeoutError",
+          "pago": true
+        },
+        {
+          "item": {
+            "id": "hb-1",
+            "titulo": "TimeoutError",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://github.com/PlaybyCourt/platform/pull/101",
+            "persona": "Honeybadger",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "clase": "maquina",
+          "tipo_maquina": "honeybadger",
+          "error_clase": "TimeoutError",
+          "pago": true
+        },
+        {
+          "item": {
+            "id": "hb-2",
+            "titulo": "CaptureError",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://github.com/PlaybyCourt/platform/pull/101",
+            "persona": "Honeybadger",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "clase": "maquina",
+          "tipo_maquina": "honeybadger",
+          "error_clase": "CaptureError",
+          "pago": true
+        },
+        {
+          "item": {
+            "id": "mail-1",
+            "titulo": "Confirmar alcance del sprint",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://mail.google.com/mail/u/0/#inbox/demo",
+            "persona": "Jefe",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "clase": "persona",
+          "tipo_maquina": null,
+          "error_clase": null,
+          "pago": false
+        }
+      ],
+      "promociones": 12
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "calendario": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "eventos": [
+        {
+          "item": {
+            "id": "evento-0",
+            "titulo": "Reunión Payments",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://calendar.google.com/calendar/u/0/r/eventedit/DEMO0",
+            "persona": "adancondori",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "inicio": "2026-11-18T15:00:00Z",
+          "fin": "2026-11-18T15:30:00Z",
+          "cancelado": false,
+          "calendario_id": "demo-personal",
+          "ocupa_agenda": true
+        },
+        {
+          "item": {
+            "id": "evento-1",
+            "titulo": "Reunión Payments",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://calendar.google.com/calendar/u/0/r/eventedit/DEMO1",
+            "persona": "adancondori",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-19T16:00:00Z",
+            "sospechoso": false
+          },
+          "inicio": "2026-11-19T16:00:00Z",
+          "fin": "2026-11-19T16:30:00Z",
+          "cancelado": false,
+          "calendario_id": "demo-personal",
+          "ocupa_agenda": true
+        },
+        {
+          "item": {
+            "id": "evento-2",
+            "titulo": "Reunión Payments",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://calendar.google.com/calendar/u/0/r/eventedit/DEMO2",
+            "persona": "adancondori",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-19T16:00:00Z",
+            "sospechoso": false
+          },
+          "inicio": "2026-11-19T16:00:00Z",
+          "fin": "2026-11-19T16:30:00Z",
+          "cancelado": false,
+          "calendario_id": "demo-personal",
+          "ocupa_agenda": true
+        },
+        {
+          "item": {
+            "id": "evento-3",
+            "titulo": "Reunión Payments",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://calendar.google.com/calendar/u/0/r/eventedit/DEMO3",
+            "persona": "adancondori",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-20T14:00:00Z",
+            "sospechoso": false
+          },
+          "inicio": "2026-11-20T14:00:00Z",
+          "fin": "2026-11-20T14:30:00Z",
+          "cancelado": false,
+          "calendario_id": "demo-personal",
+          "ocupa_agenda": true
+        }
+      ]
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "slack": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "mensajes": [
+        {
+          "item": {
+            "id": "slack-0",
+            "titulo": "Revisar entrega",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://playbypoint.slack.com/archives/DEMO/p0",
+            "persona": "Santiago",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "canal": "deployments",
+          "mencion": true,
+          "dm": false,
+          "espera_respuesta": true,
+          "resuelto": false,
+          "deploy_prs": [
+            "https://github.com/PlaybyCourt/platform/pull/104"
+          ],
+          "produccion": true
+        },
+        {
+          "item": {
+            "id": "slack-1",
+            "titulo": "Revisar entrega",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://playbypoint.slack.com/archives/DEMO/p1",
+            "persona": "Santiago",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "canal": "dev-notifications",
+          "mencion": true,
+          "dm": false,
+          "espera_respuesta": true,
+          "resuelto": true,
+          "deploy_prs": [],
+          "produccion": false
+        },
+        {
+          "item": {
+            "id": "slack-2",
+            "titulo": "Revisar entrega",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://playbypoint.slack.com/archives/DEMO/p2",
+            "persona": "Santiago",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "canal": "payments",
+          "mencion": true,
+          "dm": false,
+          "espera_respuesta": true,
+          "resuelto": false,
+          "deploy_prs": [],
+          "produccion": false
+        },
+        {
+          "item": {
+            "id": "slack-3",
+            "titulo": "Revisar entrega",
+            "detalle": "Ejemplo de demostración",
+            "url": "https://playbypoint.slack.com/archives/DEMO/p3",
+            "persona": "Santiago",
+            "estado": "Requiere acción",
+            "fecha": "2026-11-18T15:00:00Z",
+            "sospechoso": false
+          },
+          "canal": "dm",
+          "mencion": true,
+          "dm": true,
+          "espera_respuesta": true,
+          "resuelto": false,
+          "deploy_prs": [],
+          "produccion": false
+        }
+      ]
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "jira": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "tickets": [
+        {
+          "clave": "CORE-101",
+          "titulo": "Revisar flujo de pagos",
+          "url": "https://paybycourt.atlassian.net/browse/CORE-101",
+          "persona": "Radhames",
+          "github": "radhames",
+          "estado": "In Progress",
+          "categoria": "in_progress",
+          "actualizado": "2026-11-14T14:00:00Z",
+          "iniciado": "2026-11-12T14:00:00Z",
+          "cerrado": null,
+          "prs": [
+            "https://github.com/PlaybyCourt/platform/pull/101"
+          ],
+          "cambios": []
+        },
+        {
+          "clave": "CORE-102",
+          "titulo": "Revisar flujo de pagos",
+          "url": "https://paybycourt.atlassian.net/browse/CORE-102",
+          "persona": "Santiago",
+          "github": "santiago",
+          "estado": "In Progress",
+          "categoria": "in_progress",
+          "actualizado": "2026-11-14T14:00:00Z",
+          "iniciado": "2026-11-12T14:00:00Z",
+          "cerrado": null,
+          "prs": [],
+          "cambios": []
+        },
+        {
+          "clave": "CORE-103",
+          "titulo": "Revisar flujo de pagos",
+          "url": "https://paybycourt.atlassian.net/browse/CORE-103",
+          "persona": "Adan Condori",
+          "github": "adancondori",
+          "estado": "In Progress",
+          "categoria": "in_progress",
+          "actualizado": "2026-11-14T14:00:00Z",
+          "iniciado": "2026-11-12T14:00:00Z",
+          "cerrado": null,
+          "prs": [
+            "https://github.com/PlaybyCourt/platform/pull/103"
+          ],
+          "cambios": []
+        },
+        {
+          "clave": "CORE-104",
+          "titulo": "Revisar flujo de pagos",
+          "url": "https://paybycourt.atlassian.net/browse/CORE-104",
+          "persona": "Santiago",
+          "github": "santiago",
+          "estado": "Done",
+          "categoria": "done",
+          "actualizado": "2026-11-14T14:00:00Z",
+          "iniciado": "2026-11-12T14:00:00Z",
+          "cerrado": "2026-11-18T16:00:00Z",
+          "prs": [
+            "https://github.com/PlaybyCourt/platform/pull/104"
+          ],
+          "cambios": [
+            {
+              "id": "cambio-104",
+              "titulo": "CORE-104: cambio de estado",
+              "detalle": "Ejemplo de demostración",
+              "url": "https://github.com/PlaybyCourt/platform/pull/101",
+              "persona": "Santiago",
+              "estado": "Requiere acción",
+              "fecha": "2026-11-18T15:00:00Z",
+              "sospechoso": false
+            }
+          ]
+        }
+      ],
+      "sprints": [
+        {
+          "id": "demo-sprint",
+          "nombre": "Sprint de ejemplo",
+          "inicio": "2026-11-09",
+          "fin": "2026-11-20",
+          "comprometidos": [
+            "CORE-101",
+            "CORE-102",
+            "CORE-103",
+            "CORE-104"
+          ],
+          "terminados": [
+            "CORE-104"
+          ],
+          "arrastrados": [],
+          "evidencia": "Fixture",
+          "completo": true,
+          "estado": "active"
+        }
+      ],
+      "personas": [
+        "Radhames",
+        "Santiago",
+        "Adan Condori"
+      ]
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "noticias": {
+    "actualizado": "2026-11-19T15:00:00Z",
+    "datos": {
+      "notas": [
+        {
+          "titulo": "Noticia de ejemplo 1",
+          "resumen": "Contenido sintético para revisar la presentación y sus enlaces.",
+          "url": "https://www.iadb.org/",
+          "medio": "Fuente de ejemplo",
+          "fecha": "2026-11-19",
+          "tema": "fintech en LATAM"
+        },
+        {
+          "titulo": "Noticia de ejemplo 2",
+          "resumen": "Contenido sintético para revisar la presentación y sus enlaces.",
+          "url": "https://www.adyen.com/press-and-media",
+          "medio": "Fuente de ejemplo",
+          "fecha": "2026-11-19",
+          "tema": "Adyen"
+        },
+        {
+          "titulo": "Noticia de ejemplo 3",
+          "resumen": "Contenido sintético para revisar la presentación y sus enlaces.",
+          "url": "https://github.blog/",
+          "medio": "Fuente de ejemplo",
+          "fecha": "2026-11-19",
+          "tema": "IA para desarrollo"
+        },
+        {
+          "titulo": "Noticia de ejemplo 4",
+          "resumen": "Contenido sintético para revisar la presentación y sus enlaces.",
+          "url": "https://www.bis.org/",
+          "medio": "Fuente de ejemplo",
+          "fecha": "2026-11-19",
+          "tema": "fintech en LATAM"
+        },
+        {
+          "titulo": "Noticia de ejemplo 5",
+          "resumen": "Contenido sintético para revisar la presentación y sus enlaces.",
+          "url": "https://www.anthropic.com/news",
+          "medio": "Fuente de ejemplo",
+          "fecha": "2026-11-19",
+          "tema": "IA para desarrollo"
+        }
+      ]
+    },
+    "error": null,
+    "evidencia": [
+      "Fixture sintético; no representa producción"
+    ],
+    "completo": true
+  },
+  "alertas": [],
+  "hecho_ayer": [],
+  "usuario": "adancondori"
+}

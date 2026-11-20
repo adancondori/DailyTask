@@ -1,0 +1,9 @@
+Buenos días. Esta es una edición de demostración de El Diario. Los datos que escuchas son ejemplos para revisar la experiencia; no describen el estado real del equipo ni de los pagos. Empieza por las acciones que aparecen al principio de la página y abre sus enlaces para encontrar la evidencia completa.
+
+En el trabajo del equipo hay una revisión pendiente y un ticket que necesita enlazarse con su pull request. Antes de dar una tarea por bloqueada, confirma con su responsable qué falta y si la actividad ocurrió en otra rama. El resumen de ayer separa primero tu trabajo y después las entregas del resto del equipo. Allí puedes recorrer los cambios de estado, las revisiones y los commits.
+
+La agenda reúne los eventos de hoy y mañana. Cuando dos reuniones coinciden, la página lo señala para que puedas resolverlo antes de empezar. En el correo se priorizan las personas; las promociones y los avisos automáticos se cuentan aparte. Las alertas de producción se agrupan por clase de error, para evitar que la cantidad de mensajes oculte el problema que necesita atención.
+
+Slack conserva las menciones y conversaciones donde todavía esperan una respuesta. Los anuncios de despliegue alimentan el reporte del equipo, sin llenar la lista de pendientes personales. Puedes consultar ese reporte por semana, quincena o mes, con sus fuentes y la fecha de actualización visibles.
+
+Para terminar, revisa el clima antes de salir, la cotización oficial y la referencia del mercado paralelo, junto con sus cambios históricos cuando estén disponibles. Las noticias incluyen sus fuentes para ampliar el contexto. El botón de sincronización permite actualizar la edición durante el día. Si una fuente falla, su sección lo indica y las demás siguen disponibles.
